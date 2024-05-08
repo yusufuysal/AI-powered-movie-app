@@ -1,12 +1,15 @@
 import { Outlet } from 'react-router-dom';
+import useStyles from '../styles';
 
 const NavBar = () => {
-  console.log('NavBar');
+  const classes = useStyles();
 
   return (
-    <div>
-      NavBar
-      <main>
+    <div className={classes.root}>
+      <div>NavBar</div>
+
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
         <Outlet />
       </main>
     </div>
