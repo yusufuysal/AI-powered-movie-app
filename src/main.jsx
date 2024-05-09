@@ -1,4 +1,11 @@
 import ReactDOM from 'react-dom/client';
 import App from './components/App.jsx';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+const theme = createTheme({});
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <ThemeProvider theme={theme}>
+    <App />
+  </ThemeProvider>,
+);
