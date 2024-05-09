@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -5,6 +6,7 @@ import {
   Button,
   Avatar,
   useMediaQuery,
+  Drawer,
 } from '@mui/material';
 import {
   Menu,
@@ -15,8 +17,10 @@ import {
 import useStyles from './styles';
 import { useTheme } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
+import { Sidebar } from '../index';
 
 const NavBar = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
   const classes = useStyles();
   const isMobile = useMediaQuery('(max-width:600px)');
   const theme = useTheme();
@@ -32,7 +36,7 @@ const NavBar = () => {
               style={{
                 outline: 'none',
               }}
-              onClick={() => {}}
+              onClick={() => setMobileOpen((prev) => !prev)}
               className={classes.menuButton}
             >
               <Menu />
@@ -52,6 +56,7 @@ const NavBar = () => {
                 color="inherit"
                 component={Link}
                 to={`/profile/:id`}
+                className={classes.linkButton}
                 onClick={() => {}}
               >
                 {!isMobile && <>My Movies &nbsp;</>}
@@ -66,6 +71,30 @@ const NavBar = () => {
           {isMobile && 'Search component...'}
         </Toolbar>
       </AppBar>
+      <div>
+        <nav className={classes.drawer}>
+          {isMobile ? (
+            <Drawer
+              variant="temporary"
+              anchor="right"
+              open={mobileOpen}
+              onClose={() => setMobileOpen((prev) => !prev)}
+              classes={{ paper: classes.drawerPaper }}
+              ModalProps={{ keepMounted: true }}
+            >
+              <Sidebar setMobileOpen={setMobileOpen} />
+            </Drawer>
+          ) : (
+            <Drawer
+              classes={{ paper: classes.drawerPaper }}
+              variant="permanent"
+              open
+            >
+              <Sidebar setMobileOpen={setMobileOpen} />
+            </Drawer>
+          )}
+        </nav>
+      </div>
     </>
   );
 };
