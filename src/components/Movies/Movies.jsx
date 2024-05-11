@@ -7,14 +7,14 @@ import { useState } from 'react';
 const Movies = () => {
   const [page, setPage] = useState(1);
 
-  const selectedCategoryOrGenre = useSelector(
-    (state) => state.selectedCategoryOrGenre.categoryOrGenreName,
+  const { categoryOrGenreName, searchQuery } = useSelector(
+    (state) => state.selectedCategoryOrGenre,
   );
 
-  console.log(selectedCategoryOrGenre);
   const { data, error, isFetching } = useGetMoviesQuery({
-    selectedCategoryOrGenre,
+    categoryOrGenreName,
     page,
+    searchQuery,
   });
 
   //console.log(data);

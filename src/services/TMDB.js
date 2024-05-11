@@ -10,22 +10,22 @@ export const tmdbApi = createApi({
   }),
   endpoints: (builder) => ({
     getMovies: builder.query({
-      query: ({ selectedCategoryOrGenre, page }) => {
+      query: ({ categoryOrGenreName, page, searchQuery }) => {
         //Get movies by category
-        if (
-          selectedCategoryOrGenre &&
-          typeof selectedCategoryOrGenre === 'string'
-        ) {
-          return `movie/${selectedCategoryOrGenre}?page=${page}&api_key=${tmdbApiKey}`;
+        if (categoryOrGenreName && typeof categoryOrGenreName === 'string') {
+          return `movie/${categoryOrGenreName}?page=${page}&api_key=${tmdbApiKey}`;
         }
 
         //Get movies by genre
-        if (
-          selectedCategoryOrGenre &&
-          typeof selectedCategoryOrGenre === 'number'
-        ) {
-          return `discover/movie?with_genres=${selectedCategoryOrGenre}&page=${page}&api_key=${tmdbApiKey}`;
+        if (categoryOrGenreName && typeof categoryOrGenreName === 'number') {
+          return `discover/movie?with_genres=${categoryOrGenreName}&page=${page}&api_key=${tmdbApiKey}`;
         }
+        //Get movies by search
+        if (searchQuery) {
+          return `/search/movie?query=${searchQuery}&page=${page}&api_key=${tmdbApiKey}`;
+        }
+
+        //Get popular movies (default fetch)
         return `movie/popular?page=${page}&api_key=${tmdbApiKey}`;
       },
     }),
