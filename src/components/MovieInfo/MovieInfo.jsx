@@ -8,6 +8,7 @@ import {
   CircularProgress,
   useMediaQuery,
   Rating,
+  DialogContent,
 } from '@mui/material';
 
 import {
@@ -71,7 +72,6 @@ const MovieInfo = () => {
     );
   }
 
-  console.log(data);
   return (
     <Grid container className={classes.containerSpaceAround}>
       <Grid item sm={12} lg={4}>
@@ -245,16 +245,18 @@ const MovieInfo = () => {
         open={open}
         onClose={() => setOpen(false)}
       >
-        {data?.videos?.results?.length > 0 && (
-          <iframe
-            autoPlay
-            className={classes.video}
-            frameBorder="0"
-            title="Trailer"
-            src={`https://www.youtube.com/embed/${data.videos.results[0].key}`}
-            allow="autoplay"
-          />
-        )}
+        <DialogContent>
+          {data?.videos?.results?.length > 0 && (
+            <iframe
+              autoPlay
+              className={classes.video}
+              frameBorder="0"
+              title="Trailer"
+              src={`https://www.youtube.com/embed/${data.videos.results[0].key}`}
+              allow="autoplay"
+            />
+          )}
+        </DialogContent>
       </Modal>
     </Grid>
   );

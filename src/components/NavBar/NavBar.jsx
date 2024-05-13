@@ -30,8 +30,6 @@ const NavBar = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
 
-  console.log(user);
-
   const token = localStorage.getItem('request_token');
   const session_id = localStorage.getItem('session_id');
 

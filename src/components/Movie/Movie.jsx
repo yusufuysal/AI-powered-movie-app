@@ -11,18 +11,22 @@ const Movie = ({ movie, i }) => {
           <img
             className={classes.image}
             src={
-              movie.poster_path
-                ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+              movie?.poster_path
+                ? `https://image.tmdb.org/t/p/w500/${movie?.poster_path}`
                 : 'https://www.fillmurray.com/200/300'
             }
-            alt={movie.title}
+            alt={movie?.title}
           />
           <Typography className={classes.title} variant="h5">
-            {movie.title}
+            {movie?.title}
           </Typography>
-          <Tooltip disableTouchListener title={`${movie.vote_average} / 10`}>
+          <Tooltip disableTouchListener title={`${movie?.vote_average} / 10`}>
             <div>
-              <Rating readOnly value={movie.vote_average / 2} precision={0.1} />
+              <Rating
+                readOnly
+                value={movie?.vote_average / 2}
+                precision={0.1}
+              />
             </div>
           </Tooltip>
         </Link>
