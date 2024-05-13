@@ -7,7 +7,7 @@ import {
 } from '../../services/TMDB';
 import { ArrowBack } from '@mui/icons-material';
 import useStyles from './styles';
-import { MovieList } from '..';
+import { MovieList, Pagination } from '..';
 
 const Actors = () => {
   const { id } = useParams();
@@ -15,7 +15,7 @@ const Actors = () => {
   const goBack = () => {
     navigate(-1); // Go back one step
   };
-  const page = 1;
+  const [page, setPage] = useState(1);
   const classes = useStyles();
 
   const { data, isFetching, error } = useGetPeopleQuery(id);
@@ -89,6 +89,11 @@ const Actors = () => {
         <Typography variant="h2" gutterBottom align="center">
           Movies {movies && <MovieList movies={movies} numberOfMovies={12} />}
         </Typography>
+        <Pagination
+          currentPage={page}
+          setPage={setPage}
+          totalPages={movies?.total_pages}
+        />
       </Box>
     </>
   );
