@@ -32,11 +32,10 @@ function App() {
   const classes = useStyles();
 
   return (
-    <RouterProvider router={router}>
-      <div className={classes.root}>
-        <CssBaseline />
-      </div>
-    </RouterProvider>
+    <div className={classes.root}>
+      <CssBaseline />
+      <RouterProvider router={router} />
+    </div>
   );
 }
 

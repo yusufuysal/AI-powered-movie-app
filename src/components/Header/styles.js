@@ -10,7 +10,8 @@ export default makeStyles((theme) => ({
     width: '100%',
     overflow: 'visible',
     [theme.breakpoints.up('sm')]: {
-      //marginLeft: '240px',
+      marginLeft: '240px',
+      width: 'calc(100% - 240px)',
     },
   },
   contentContainer: {
