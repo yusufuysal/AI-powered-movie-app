@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { TextField, InputAdornment } from '@mui/material';
-import { Input, Search as SearchIcon } from '@mui/icons-material';
-import { useDispatch, useSelector } from 'react-redux';
+import { Search as SearchIcon } from '@mui/icons-material';
+import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import useStyles from './styles';
 import { searchMovies } from '../../features/SelectedCateogoryOrGenre';
@@ -11,12 +11,16 @@ const Search = () => {
   const [query, setQuery] = useState('');
   const dispatch = useDispatch();
 
-  console.log('search');
+  const location = useLocation();
+
   const handleKeyPress = (event) => {
     if (event.key == 'Enter') {
       dispatch(searchMovies(query));
     }
   };
+
+  if (location.pathname !== '/') return null;
+
   return (
     <div className={classes.searchContainer}>
       <TextField
