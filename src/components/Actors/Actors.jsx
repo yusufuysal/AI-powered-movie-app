@@ -39,8 +39,6 @@ const Actors = () => {
     );
   }
 
-  console.log('HEREEEE', data);
-
   return (
     <>
       <Grid container spacing={3}>

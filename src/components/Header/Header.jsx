@@ -1,12 +1,12 @@
 import { Outlet } from 'react-router-dom';
 import { NavBar } from '../index';
-import useStyles from '../styles';
+import useStyles from './styles';
 
 const Header = () => {
   const classes = useStyles();
 
   return (
-    <>
+    <div className={classes.contentContainer}>
       <header>
         <NavBar />
       </header>
@@ -14,7 +14,7 @@ const Header = () => {
         <div className={classes.toolbar} />
         <Outlet />
       </main>
-    </>
+    </div>
   );
 };
 

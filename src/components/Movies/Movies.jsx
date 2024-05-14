@@ -26,8 +26,6 @@ const Movies = () => {
 
   const numberOfMovies = lg ? 16 : 18;
 
-  console.log('RENDERING MOVIESSS', data);
-
   if (isFetching) {
     return (
       <Box display="flex" justifyContent="center">
